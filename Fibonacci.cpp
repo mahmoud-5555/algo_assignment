@@ -38,16 +38,30 @@ unsigned long long FibonacciDavidConquer(unsigned int n)
 {
 	return powDavidConquer(n)[0][1];
 }
+void FibonacciDP(vector<long long> &fibo, unsigned int n)
+{
+	if (n <= 1)
+	{
+		fibo[n] = n;
+		return;
+	}
+
+	if (fibo[n] != -1)
+	{
+		return;
+	}
+	FibonacciDP(fibo, n - 1);
+	FibonacciDP(fibo, n - 2);
+
+	fibo[n] = fibo[n - 1] + fibo[n - 2];
+	return;
+}
 unsigned long long FibonacciDP(unsigned int n)
 {
 
-	vector<long long> fibo(2, 0);
-	fibo[1] = 1;
+	vector<long long> fibo(n + 1, -1);
 
-	for (size_t i = 2; i <= n; i++)
-	{
-		fibo.push_back(fibo[i - 1] + fibo[i - 2]);
-	}
+	FibonacciDP(fibo, n);
 	return fibo[n];
 }
 int main()

@@ -1,9 +1,11 @@
 #include <vector>
 using namespace std;
 
-template < typename T >
-long long sequentialSearch(const vector<T>& list, T target) {
-	for (size_t i = 0; i < list.size(); i++) {
+template <typename T>
+long long sequentialSearch(const vector<T> &list, T target)
+{
+	for (size_t i = 0; i < list.size(); i++)
+	{
 		if (list[i] == target)
 		{
 			return i;
@@ -12,8 +14,9 @@ long long sequentialSearch(const vector<T>& list, T target) {
 	return -1;
 }
 
-template < typename T >
-long long recursiveSequentialSearch(const vector<T>& list, T target, size_t index = 0) {
+template <typename T>
+long long recursiveSequentialSearch(const vector<T> &list, T target, size_t index = 0)
+{
 	if (index >= list.size())
 	{
 		return -1;
@@ -26,11 +29,35 @@ long long recursiveSequentialSearch(const vector<T>& list, T target, size_t inde
 	{
 		return index;
 	}
-	return recursiveSequentialSearch(list, target, index+1);
+	return recursiveSequentialSearch(list, target, index + 1);
 }
 
-template < typename T >
-long long recursiveBinarySearch(const vector<T>& list, T target, size_t begin, size_t end) {
+template <typename T>
+long long BinarySearch(const vector<T> &list, T target)
+{
+
+	int begin = 0, end = list.size();
+
+	while (begin < end)
+	{
+		size_t mid = (begin + end) / 2;
+		if (list[mid] == target)
+		{
+			return mid;
+		}
+		else if (list[mid] > target)
+		{
+			end = mid - 1
+		}
+		else
+			begin = mid + 1;
+	}
+	return -1;
+}
+
+template <typename T>
+long long recursiveBinarySearch(const vector<T> &list, T target, size_t begin, size_t end)
+{
 	if (begin > end)
 	{
 		return -1;
@@ -46,7 +73,8 @@ long long recursiveBinarySearch(const vector<T>& list, T target, size_t begin, s
 	}
 	return recursiveBinarySearch(list, target, mid + 1, end);
 }
-template < typename T >
-long long recursiveBinarySearch(const vector<T>& list, T target) {
+template <typename T>
+long long recursiveBinarySearch(const vector<T> &list, T target)
+{
 	return recursiveBinarySearch(list, target, 0, list.size() - 1);
 }

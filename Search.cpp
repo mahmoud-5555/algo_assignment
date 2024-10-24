@@ -1,4 +1,5 @@
 #include <vector>
+#include <iostream>
 using namespace std;
 
 template <typename T>
@@ -77,4 +78,15 @@ template <typename T>
 long long recursiveBinarySearch(const vector<T> &list, T target)
 {
 	return recursiveBinarySearch(list, target, 0, list.size() - 1);
+}
+
+int main()
+{
+
+	vector<int> c = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 50, 88, 990, 1000, 11111, 111111, 122222222, 555555555};
+
+	cout << "sequentialSearch: " << sequentialSearch(c, 90) << "\n";
+	cout << "recursiveSequentialSearch: " << recursiveSequentialSearch(c, 90) << "\n";
+	cout << "BinarySearch: " << BinarySearch(c, 90) << "\n";
+	cout << "recursiveBinarySearch: " << recursiveBinarySearch(c, 90) << "\n";
 }

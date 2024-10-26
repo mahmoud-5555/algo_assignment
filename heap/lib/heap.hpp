@@ -24,6 +24,7 @@ private:
         return a > b;
     }
     bool (*comp)(T a, T b);
+    static bool (*comp)(T a, T b);
 
     // Private method to swap two elements
     void swap(T* element1, T* element2);

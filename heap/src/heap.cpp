@@ -23,6 +23,7 @@ void Heap <T> :: swap(T *element1, T *element2) {
     *element1 = *element2;
     *element2 =  temp;
 
+
 }
 
 /**
@@ -67,6 +68,11 @@ template <class T>
 void Heap <T> :: push(T element) {
     data.push_back(element);
     heapfy(size() - 1);
+    for (int i = 0; i < DATA.size(); i++)
+    {
+        std::cout << element << '-';
+    }
+    cout << '\n';
 
 }
 /**

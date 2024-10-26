@@ -5,6 +5,9 @@
 
 
 //lib
+#ifndef HEAP_HPP
+#define HEAP_HPP
+
 #include <vector>
 
 //classes
@@ -12,13 +15,13 @@
 template <class T>
 class Heap {
     private:
-    vector <T> *DATA; // Internal storage for heap elements
+    std::vector <T> *DATA; // Internal storage for heap elements
 
         bool defaultCompare(T a, T b) {
         return a <= b;  // Adjust for max-heap if needed
     }
 
-    bool (*comp)(T a, T b) = defaultCompare<T>
+    bool (*comp)(T a, T b) = defaultCompare(); // comparison function
 
     // Private method to swap two elements
     void swap (T *element1, T *element2); 
@@ -38,5 +41,7 @@ class Heap {
     unsigned int size();// return number of nodes at the heap
 
     void heapfy(int index, bool *comfun(T, T));
-    void max_min_heapfy(int index, bool *comfun(T, T))
+    void max_min_heapfy(int index, bool *comfun(T, T));
 };
+
+#endif

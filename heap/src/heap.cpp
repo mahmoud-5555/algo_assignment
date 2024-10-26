@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include "../lib/heap.hpp"
+
 using namespace std;
 
 
@@ -16,7 +17,8 @@ using namespace std;
  * @element2: The address of the second element
  * return: void
  */
-void Heap <class T> :: swap(T *element1, T *element2) {
+template <class T>
+void Heap <T> :: swap(T *element1, T *element2) {
     T temp = *element1;
     *element1 = *element2;
     *element2 =  temp;
@@ -31,7 +33,8 @@ void Heap <class T> :: swap(T *element1, T *element2) {
  * this frist elemnt should be the child element and the secound
  * should be the parent element
  */
-void Heap <class T>::heapfy(int index, bool *comfun(T, T)) {
+template <class T>
+void Heap <T>::heapfy(int index, bool *comfun(T, T)) {
 
     // check index in range
     if (index || index >= DATA->size())
@@ -42,7 +45,7 @@ void Heap <class T>::heapfy(int index, bool *comfun(T, T)) {
     if (comfun(*DATA[index], *DATA[index/2])) {
         swap(*DATA[index], *DATA[index/2]);
         // heapfy the parent 
-        heapfy(index/2, comfun());
+        heapfy(index/2, comfun);
     }
 }
 
@@ -50,7 +53,8 @@ void Heap <class T>::heapfy(int index, bool *comfun(T, T)) {
  * size - function that return number of element in heap
  * return: unsigned int the size
  */
-unsigned int Heap <class T> ::size() {
+template <class T>
+unsigned int Heap <T> ::size() {
     return DATA->size();
 }
 
@@ -59,8 +63,8 @@ unsigned int Heap <class T> ::size() {
  * @element: the element that want to push
  * return: void
  */
-
-void Heap <class T> :: push(T element) {
+template <class T>
+void Heap <T> :: push(T element) {
     DATA.push_back(element);
     heapfy(size() - 1, comp);
 
@@ -69,7 +73,8 @@ void Heap <class T> :: push(T element) {
  * pop - function that pop p from heap
  * return: element
  */
-void Heap <class T> ::pop() {
+template <class T>
+void Heap <T> ::pop() {
     // Check if there is node at the heap
     if (!size())
         return NULL;
@@ -94,7 +99,8 @@ void Heap <class T> ::pop() {
  * root - function return the first priority without delete it
  * return: element
  */
-T Heap <class T>::root() {
+template <class T>
+T Heap <T>::root() {
     if (size())
         return *DATA[0];
 
@@ -102,17 +108,20 @@ T Heap <class T>::root() {
 }
 
 //The default  constructor of the heap
-Heap <class T>:: Heap() {
+template <class T>
+Heap <T>:: Heap() {
     DATA = new vector <T>();
 }
 
 // Destructor
-Heap <class T>::~Heap() {
+template <T>
+Heap <T>::~Heap() {
     delete DATA;  // Manually deallocate memory to avoid memory leaks
 }
 
 // build from an array
-Heap <class T> :: Heap(T array[], int size) {
+template <class T>
+Heap <T> :: Heap(T array[], int size) {
     this.DATA = new vector <T>();
 
     // Move element from the array to vector
@@ -132,7 +141,8 @@ Heap <class T> :: Heap(T array[], int size) {
  * min_max_heapfy - function for make min_heap or maxheap depends on the function comp
  * return: void 
  */
-void Heap <class T>:: max_min_heapfy(int index, bool *comfun(T, T)) {
+template <class T>
+void Heap <T>:: max_min_heapfy(int index, bool *comfun(T, T)) {
     //Left - Right chiledren 
     int left = (index * 2) + 1;
     int Rigth = (index * 2) + 2;
@@ -150,7 +160,8 @@ void Heap <class T>:: max_min_heapfy(int index, bool *comfun(T, T)) {
             index_of_child_paiortize = left;
     if comp(*DATA[index], *DATA[index_of_child_paiortize])
     {
-        
+        swap(*DATA[index], *DATA[index_of_child_paiortize]);
+        max_min_heapfy(index_of_child_paiortize, comfun);
     }
 }
 

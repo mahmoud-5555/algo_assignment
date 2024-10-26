@@ -17,11 +17,10 @@ class Heap {
     private:
     std::vector <T> DATA; // Internal storage for heap elements
 
-    static bool defaultCompare(T a, T b) {
+    bool defaultCompare(T a, T b) {
         return a <= b;  // Example comparison logic
     }
-
-    static bool (*comp)(T a, T b);
+    bool (*comp)(T , T);
 
     // Private method to swap two elements
     void swap (T *element1, T *element2); 

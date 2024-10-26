@@ -23,6 +23,7 @@ void Heap <T> :: swap(T *element1, T *element2) {
     *element1 = *element2;
     *element2 =  temp;
 
+
 }
 
 /**
@@ -37,13 +38,13 @@ template <class T>
 void Heap <T>::heapfy(int index) {
 
     // check index in range
-    if (index || index >= DATA.size())
+    if (!index || index >= DATA.size())
         return;
     
     // check parent and swap if the parent is 
     // < greater : maxheap, smallest : minheap>
-    if (comp(DATA[index], DATA[index/2])) {
-        swap(&DATA[index], &DATA[index/2]);
+    if (comp(DATA[index/2], DATA[index])) {
+        swap(&DATA[index/2], &DATA[index]); 
         // heapfy the parent 
         heapfy(index/2);
     }
@@ -67,6 +68,11 @@ template <class T>
 void Heap <T> :: push(T element) {
     DATA.push_back(element);
     heapfy(size() - 1);
+    for (int i = 0; i < DATA.size(); i++)
+    {
+        std::cout << element << '-';
+    }
+    cout << '\n';
 
 }
 /**
@@ -117,7 +123,6 @@ template <class T>
 Heap <T> :: Heap(T array[], int size) {
 
     this->comp = this->defaultCompare;
-
     // Move element from the array to vector
     for (int i = 0; i < size; i++)
         DATA.push_back(array[i]);

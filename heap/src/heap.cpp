@@ -68,7 +68,7 @@ template <class T>
 void Heap <T> :: push(T element) {
     data.push_back(element);
     heapfy(size() - 1);
-    for (int i = 0; i < DATA.size(); i++)
+    for (int i = 0; i < data.size(); i++)
     {
         std::cout << element << '-';
     }
@@ -128,16 +128,14 @@ Heap <T>::Heap(T array[], int size,bool isMaxHeap) : Heap(array, size,
 template <class T>
 Heap <T> ::Heap(T array[], int size, bool(*comfun)(T, T)) : comp(comfun) {
     // Move element from the array to vector
-    data(size);
     for (int i = 0; i < size; i++)
     {
-        data[i] = array[i];
+        data.push_back(array[i]);
     }
     int non_leaf = (this->size() / 2) - 1;
-
-    while (non_leaf)
+    while (non_leaf >= 0)
     {
-        max_min_heapfy(non_leaf, comp);
+        max_min_heapfy(non_leaf);
         non_leaf--;
     }
 }

@@ -1,10 +1,10 @@
 /**
- * this modules for heap 
+ * this modules for heap
  * mahmoudadam5555@gmail.com
  */
 
 
-//lib
+ //lib
 #ifndef HEAP_HPP
 #define HEAP_HPP
 
@@ -14,27 +14,28 @@
 
 template <class T>
 class Heap {
-    private:
-    std::vector <T> DATA; // Internal storage for heap elements
+private:
+    std::vector <T> data; // Internal storage for heap elements
 
-    static bool defaultCompare(T a, T b) {
-        return a <= b;  // Example comparison logic
+    static bool lessThan(T a, T b) {
+        return a < b;
     }
-
-    static bool (*comp)(T a, T b);
+    static bool greaterThan(T a, T b) {
+        return a > b;
+    }
+    bool (*comp)(T a, T b);
 
     // Private method to swap two elements
-    void swap (T *element1, T *element2); 
+    void swap(T* element1, T* element2);
 
 
-    public:
-
+public:
     //constructor
-    
-    Heap();// default Constructor
-    Heap(T array[], int size); // buled from an array
-    Heap(T array[], bool *comfun(T, T)); // Constructor to initialize heap from an array
-   
+    Heap(bool isMaxHeap = true);
+    Heap(T array[], int size, bool isMaxHeap = true); // buled from an array
+    Heap(bool(* comfun)(T, T)); // Constructor to initialize heap from an array
+    Heap(T array[],int size, bool(* comfun)(T, T)); // Constructor to initialize heap from an array
+
     //heap Opratetion
 
     void push(T); // insert element to heap

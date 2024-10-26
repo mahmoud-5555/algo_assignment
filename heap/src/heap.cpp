@@ -37,13 +37,13 @@ template <class T>
 void Heap <T>::heapfy(int index) {
 
     // check index in range
-    if (index || index >= DATA.size())
+    if (index || index >= data.size())
         return;
     
     // check parent and swap if the parent is 
     // < greater : maxheap, smallest : minheap>
-    if (comp(DATA[index], DATA[index/2])) {
-        swap(&DATA[index], &DATA[index/2]);
+    if (comp(data[index], data[index/2])) {
+        swap(&data[index], &data[index/2]);
         // heapfy the parent 
         heapfy(index/2);
     }
@@ -55,7 +55,7 @@ void Heap <T>::heapfy(int index) {
  */
 template <class T>
 unsigned int Heap <T> ::size() {
-    return DATA.size();
+    return data.size();
 }
 
 /**
@@ -65,7 +65,7 @@ unsigned int Heap <T> ::size() {
  */
 template <class T>
 void Heap <T> :: push(T element) {
-    DATA.push_back(element);
+    data.push_back(element);
     heapfy(size() - 1);
 
 }
@@ -80,13 +80,13 @@ T Heap <T> ::pop() {
         return NULL;
 
     // make swap between the root and the last element
-    swap(&DATA[0], &DATA[size() - 1]);
+    swap(&data[0], &data[size() - 1]);
 
     // save the value at temp befor deleted 
-    T temp = DATA[size() - 1];
+    T temp = data[size() - 1];
 
     // delete the element from data
-    DATA.pop_back();
+    data.pop_back();
 
     // make down_heapfy starting from heap 
     max_min_heapfy(0);
@@ -102,33 +102,38 @@ T Heap <T> ::pop() {
 template <class T>
 T Heap <T>::root() {
     if (size())
-        return DATA[0];
+        return data[0];
 
     return NULL;
 }
 
 //The default  constructor of the heap
 template <class T>
-Heap <T>:: Heap() {}
+Heap <T>:: Heap(bool isMaxHeap):Heap(isMaxHeap ? lessThan : greaterThan) {}
 
+template <class T>
+Heap <T>::Heap(bool(* comfun)(T, T)) : comp(comfun) {}
+
+template <class T>
+Heap <T>::Heap(T array[], int size,bool isMaxHeap) : Heap(array, size,
+    isMaxHeap ? lessThan : greaterThan) {}
 
 // build from an array
 template <class T>
-Heap <T> :: Heap(T array[], int size) {
-
-    this->comp = this->defaultCompare;
-
+Heap <T> ::Heap(T array[], int size, bool(*comfun)(T, T)) : comp(comfun) {
     // Move element from the array to vector
+    data(size);
     for (int i = 0; i < size; i++)
-        DATA.push_back(array[i]);
+    {
+        data[i] = array[i];
+    }
+    int non_leaf = (this->size() / 2) - 1;
 
-        int non_leaf  = (this.size() / 2) - 1;
-        
-        while(non_leaf)
-        {
-            max_min_heapfy(non_leaf,comp);
-            non_leaf--;
-        }
+    while (non_leaf)
+    {
+        max_min_heapfy(non_leaf, comp);
+        non_leaf--;
+    }
 }
 
 /**
@@ -148,13 +153,13 @@ void Heap <T>:: max_min_heapfy(int index) {
     if (Right > size() - 1)
         index_of_child_paiortize = left;
     else
-        if (comp(DATA[left], DATA[Right]))
+        if (comp(data[left], data[Right]))
             index_of_child_paiortize = Right;
         else
             index_of_child_paiortize = left;
-    if (comp(DATA[index], DATA[index_of_child_paiortize]))
+    if (comp(data[index], data[index_of_child_paiortize]))
     {
-        swap(&DATA[index], &DATA[index_of_child_paiortize]);
+        swap(&data[index], &data[index_of_child_paiortize]);
         max_min_heapfy(index_of_child_paiortize);
     }
 }

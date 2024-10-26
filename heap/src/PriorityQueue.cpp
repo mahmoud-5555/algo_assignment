@@ -1,3 +1,4 @@
+#include "../../../../mahmoud-5555/algo_assignment/heap/lib/heap.hpp"
 template <typename T>
 class PriorityQueue
 {
@@ -13,7 +14,7 @@ class PriorityQueue
 		bool operator>(const QueueElement& other) const {
 			return priority > other.priority;
 		}
-		bool operator= > (const QueueElement& other) const {
+		bool operator>= (const QueueElement& other) const {
 			return priority >= other.priority;
 		}
 	};

@@ -37,9 +37,9 @@ template <typename T>
 long long BinarySearch(const vector<T> &list, T target)
 {
 
-	int begin = 0, end = list.size();
+	int begin = 0, end = list.size() - 1;
 
-	while (begin < end)
+	while (begin <= end)
 	{
 		size_t mid = (begin + end) / 2;
 		if (list[mid] == target)
@@ -51,7 +51,9 @@ long long BinarySearch(const vector<T> &list, T target)
 			end = mid - 1;
 		}
 		else
+		{
 			begin = mid + 1;
+		}
 	}
 	return -1;
 }
@@ -85,8 +87,8 @@ int main()
 
 	vector<int> c = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 50, 88, 990, 1000, 11111, 111111, 122222222, 555555555};
 
-	cout << "sequentialSearch: " << sequentialSearch(c, 90) << "\n";
-	cout << "recursiveSequentialSearch: " << recursiveSequentialSearch(c, 90) << "\n";
-	cout << "BinarySearch: " << BinarySearch(c, 90) << "\n";
-	cout << "recursiveBinarySearch: " << recursiveBinarySearch(c, 90) << "\n";
+	cout << "sequentialSearch: " << sequentialSearch(c, 50) << "\n";
+	cout << "recursiveSequentialSearch: " << recursiveSequentialSearch(c, 50) << "\n";
+	cout << "BinarySearch: " << BinarySearch(c, 50) << "\n";
+	cout << "recursiveBinarySearch: " << recursiveBinarySearch(c, 50) << "\n";
 }

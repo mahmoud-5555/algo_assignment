@@ -15,25 +15,26 @@
 template <class T>
 class Heap {
     private:
-    std::vector <T> *DATA; // Internal storage for heap elements
+    std::vector <T> DATA; // Internal storage for heap elements
 
-        bool defaultCompare(T a, T b) {
-        return a <= b;  // Adjust for max-heap if needed
+    static bool defaultCompare(T a, T b) {
+        return a <= b;  // Example comparison logic
     }
 
-    bool (*comp)(T a, T b) = defaultCompare(); // comparison function
+    static bool (*comp)(T a, T b);
 
     // Private method to swap two elements
     void swap (T *element1, T *element2); 
 
 
     public:
+
     //constructor
+    
     Heap();// default Constructor
     Heap(T array[], int size); // buled from an array
     Heap(T array[], bool *comfun(T, T)); // Constructor to initialize heap from an array
-    ~Heap(); //Deconstructor
-
+   
     //heap Opratetion
 
     void push(T); // insert element to heap
@@ -41,8 +42,8 @@ class Heap {
     T root(); // get the root value
     unsigned int size();// return number of nodes at the heap
 
-    void heapfy(int index, bool *comfun(T, T));
-    void max_min_heapfy(int index, bool *comfun(T, T));
+    void heapfy(int index);
+    void max_min_heapfy(int index);
 };
 
 #endif

@@ -75,7 +75,7 @@ template <class T>
 T Heap <T> ::pop() {
     // Check if there is node at the heap
     if (empty())
-        return NULL;
+        throw std::runtime_error("Heap is empty, cannot pop element.");
 
     // make swap between the root and the last element
     swap(&data[0], &data[size() - 1]);
@@ -105,10 +105,9 @@ bool Heap <T>::empty() {
  */
 template <class T>
 T Heap <T>::root() {
-    if (size())
-        return data[0];
-
-    return NULL;
+    if (empty())
+        throw std::runtime_error("Heap is empty, cannot access root.");
+    return data[0];
 }
 
 //The default  constructor of the heap

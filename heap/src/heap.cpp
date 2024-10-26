@@ -3,9 +3,6 @@
  * mahmoudadam5555@gmail.com
  */
 
-
-
-#include <iostream>
 #include "../lib/heap.hpp"
 
 using namespace std;
@@ -38,15 +35,15 @@ template <class T>
 void Heap <T>::heapfy(int index) {
 
     // check index in range
-    if (index || index >= data.size())
+    if (index < 0 || index >= data.size())
         return;
-    
+
     // check parent and swap if the parent is 
     // < greater : maxheap, smallest : minheap>
-    if (comp(data[index], data[index/2])) {
-        swap(&data[index], &data[index/2]);
+    if (comp(data[index / 2], data[index])) {
+        swap(&data[index], &data[index / 2]);
         // heapfy the parent 
-        heapfy(index/2);
+        heapfy(index / 2);
     }
 }
 
@@ -68,11 +65,6 @@ template <class T>
 void Heap <T> :: push(T element) {
     data.push_back(element);
     heapfy(size() - 1);
-    for (int i = 0; i < data.size(); i++)
-    {
-        std::cout << element << '-';
-    }
-    cout << '\n';
 
 }
 /**

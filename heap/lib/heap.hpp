@@ -37,7 +37,7 @@ public:
     Heap(T array[],int size, bool(* comfun)(T, T)); // Constructor to initialize heap from an array
 
     //heap Opratetion
-
+    bool empty();
     void push(T); // insert element to heap
     T pop(); // pop element from heap abd return the value
     T root(); // get the root value

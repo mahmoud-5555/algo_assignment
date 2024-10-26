@@ -82,7 +82,7 @@ void Heap <T> :: push(T element) {
 template <class T>
 T Heap <T> ::pop() {
     // Check if there is node at the heap
-    if (!size())
+    if (empty())
         return NULL;
 
     // make swap between the root and the last element
@@ -95,12 +95,18 @@ T Heap <T> ::pop() {
     data.pop_back();
 
     // make down_heapfy starting from heap 
-    max_min_heapfy(0);
+    if (!empty())
+    {
+        max_min_heapfy(0);
+    }
 
     //return the value that was at the root
     return temp;
 }
-
+template <class T>
+bool Heap <T>::empty() {
+    return data.size() <= 0;
+}
 /**
  * root - function return the first priority without delete it
  * return: element

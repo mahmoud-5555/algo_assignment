@@ -32,6 +32,7 @@ class Heap {
     Heap();// default Constructor
     Heap(T array[], int size); // buled from an array
     Heap(T array[], bool *comfun(T, T)); // Constructor to initialize heap from an array
+    ~Heap(); //Deconstructor
 
     //heap Opratetion
 

@@ -74,7 +74,7 @@ void Heap <T> :: push(T element) {
  * return: element
  */
 template <class T>
-void Heap <T> ::pop() {
+T Heap <T> ::pop() {
     // Check if there is node at the heap
     if (!size())
         return NULL;
@@ -86,7 +86,7 @@ void Heap <T> ::pop() {
     T temp = *DATA[size() - 1];
 
     // delete the element from data
-    DATA->pop_back()
+    DATA->pop_back();
 
     // make down_heapfy starting from heap 
     max_min_heapfy(0,comp);
@@ -114,7 +114,7 @@ Heap <T>:: Heap() {
 }
 
 // Destructor
-template <T>
+template <class T>
 Heap <T>::~Heap() {
     delete DATA;  // Manually deallocate memory to avoid memory leaks
 }
@@ -145,20 +145,20 @@ template <class T>
 void Heap <T>:: max_min_heapfy(int index, bool *comfun(T, T)) {
     //Left - Right chiledren 
     int left = (index * 2) + 1;
-    int Rigth = (index * 2) + 2;
+    int Right = (index * 2) + 2;
     int index_of_child_paiortize;
 
     // check if the lift node is outside the range of the heap 
     if (left > size() - 1)
         return;
-    if (Rigth > size() - 1)
+    if (Right > size() - 1)
         index_of_child_paiortize = left;
     else
-        if comp(*DATA[left], *DATA[Rigth])
+        if (comfun(*DATA[left], *DATA[Right]))
             index_of_child_paiortize = Right;
         else
             index_of_child_paiortize = left;
-    if comp(*DATA[index], *DATA[index_of_child_paiortize])
+    if (comfun(*DATA[index], *DATA[index_of_child_paiortize]))
     {
         swap(*DATA[index], *DATA[index_of_child_paiortize]);
         max_min_heapfy(index_of_child_paiortize, comfun);

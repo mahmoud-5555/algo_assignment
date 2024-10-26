@@ -13,7 +13,7 @@ class PriorityQueue
 		bool operator>(const QueueElement& other) const {
 			return priority > other.priority;
 		}
-		bool operator=>(const QueueElement& other) const {
+		bool operator= > (const QueueElement& other) const {
 			return priority >= other.priority;
 		}
 	};
@@ -26,4 +26,5 @@ public:
 	T extract() {
 		QueueElement queueElement = heap.pop();
 		return queueElement.element;
+	}
 };

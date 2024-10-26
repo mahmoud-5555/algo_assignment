@@ -48,7 +48,7 @@ long long BinarySearch(const vector<T> &list, T target)
 		}
 		else if (list[mid] > target)
 		{
-			end = mid - 1
+			end = mid - 1;
 		}
 		else
 			begin = mid + 1;

@@ -45,6 +45,9 @@ public:
 
     void heapfy(int index);
     void max_min_heapfy(int index);
+
+    void maxHeapify(int i, int n)
+    vector<T> HeapSort();
 };
 
 #endif

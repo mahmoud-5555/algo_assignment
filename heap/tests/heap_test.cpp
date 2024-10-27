@@ -23,6 +23,14 @@ int main() {
     myheap.push(6);
     myheap.push(3);
     myheap.push(5);
+
+    vector<int> sorrtArray=myheap.HeapSort();
+    for(int i = 0; i < 7; i++)
+    {
+    
+        cout << sorrtArray[i] << " _ ";
+    }
+    cout<<"/n";
     for(int i = 0; i < 7; i++)
     {
     

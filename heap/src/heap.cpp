@@ -23,6 +23,37 @@ void Heap <T> :: swap(T *element1, T *element2) {
 
 }
 
+template <class T>
+void Heap <T> ::maxHeapify(int i, int n)
+    {
+        if(i==n)
+            return ;
+        int l = 2 * i + 1;
+        int r = 2 * i + 2;
+        int largest = i;
+
+        if (l <= n && MyHeap[i] < MyHeap[l])
+            largest = l;
+        if (r <= n && MyHeap[largest] < MyHeap[r])
+            largest = r;
+
+        if (largest != i)
+        {
+            swap(MyHeap[i], MyHeap[largest]);
+            maxHeapify(largest, n);
+        }
+    }
+
+template <class T>
+vector<T> Heap <T> :: HeapSort()
+{
+        for (int i = size - 1; i > 0; i--)
+        {
+            swap(MyHeap[i], MyHeap[0]);
+             maxHeapify(0, i - 1);  
+        }
+        return data;
+}
 /**
  * heapfy - Function is used for heapfy element it's
  * work from spcfic node and the go two parent node

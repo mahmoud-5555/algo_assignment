@@ -4,17 +4,12 @@
 
 using namespace std;
 
-
-
-int main() {
-
-
-    cout << "hallo c++";
-    
+int main()
+{
     // test heap
     // input [12, 4, 8, 11, 6, 3, 5]
     // push one by one
-    Heap <int> myheap;
+    Heap<int> myheap;
 
     myheap.push(12);
     myheap.push(4);
@@ -24,19 +19,18 @@ int main() {
     myheap.push(3);
     myheap.push(5);
 
-    vector<int> sorrtArray=myheap.HeapSort();
-    for(int i = 0; i < 7; i++)
+    vector<int> sortArray = myheap.HeapSort();
+    for (int i = 0; i < 7; i++)
     {
-    
-        cout << sorrtArray[i] << " _ ";
+
+        cout << sortArray[i] << " _ ";
     }
-    cout<<"/n";
-    for(int i = 0; i < 7; i++)
+    cout << "\n";
+    for (int i = 0; i < 7; i++)
     {
-    
+
         cout << myheap.pop() << " _&&_ ";
     }
-    
 
     return 0;
 }

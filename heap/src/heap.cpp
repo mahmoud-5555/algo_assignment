@@ -201,4 +201,15 @@ void Heap<T>::max_min_heapfy(int index)
         swap(&data[index], &data[index_of_child_paiortize]);
         max_min_heapfy(index_of_child_paiortize);
     }
+
+    
+}
+
+template <class T> 
+vector<T> Heap <T>::max_min_from_Heap() {
+    if (empty())
+        throw runtime_error("Heap is empty, No max and min.");
+    vector <T> temp = this->HeapSort();
+    vector <T> res = {temp[0], temp[temp.size() - 1]};
+    return res;
 }

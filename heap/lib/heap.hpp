@@ -43,6 +43,7 @@ public:
     T pop();             // pop element from heap abd return the value
     T root();            // get the root value
     unsigned int size(); // return number of nodes at the heap
+    std::vector<T> max_min_from_Heap();
 
     void heapfy(int index);
     void max_min_heapfy(int index);
